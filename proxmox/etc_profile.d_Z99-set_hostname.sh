@@ -41,7 +41,7 @@ echo "Server will reboot after this process completes"
 while true
 	do
 	echo "Hit ^C to escape for maintenance."
-	echo -n "Current hostname is $(hostname). Enter the new hostname and press [ENTER]: "
+	echo -n "Current hostname is $(hostname -s). Enter the new hostname and press [ENTER]: "
 	read NEWHOSTNAME
 	if [[ $NEWHOSTNAME =~ ^[[:alnum:].-]+$ ]]; then
 		break;
