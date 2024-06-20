@@ -23,7 +23,7 @@ MYDOMAIN=`dnsdomainname`
 # Default hostname from host template
 MYTEMPLATE="build-vm01"
 
-if { $MYDOMAIN == "" }; then
+if [ $MYDOMAIN == "" ]; then
 	while true
 		do
 		echo "Server Domain not set.  Please enter preferred domain name"
@@ -56,10 +56,9 @@ done
 
 echo ${NEWHOSTNAME}.${MYDOMAIN} > /etc/mailname
 hostnamectl set-hostname ${NEWHOSTNAME}.${MYDOMAIN}
-sed -i "s/${MYTEMPLATE}/${NEWHOSTNAME}g" /etc/hosts
+sed -i "s/${MYTEMPLATE}/${NEWHOSTNAME}/g" /etc/hosts
 rm /etc/ssh/ssh_host_*
 ssh-keygen -A
-restorecon /etc/ssh/ssh_host_*
 
 # Setting build date
 date > /etc/built_on.txt
