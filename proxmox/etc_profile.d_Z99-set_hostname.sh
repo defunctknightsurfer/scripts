@@ -1,12 +1,15 @@
 #!/bin/bash
 # This script starts out in /etc/profile.d/Z99-set_hostname.sh and then is moved to /usr/local/sbin/set_hostname.sh
 # This should only be run once
+
+# Direct Download
+#curl -o /etc/profile.d/Z99-set_hostname.sh https://raw.githubusercontent.com/defunctknightsurfer/scripts/main/proxmox/etc_profile.d_Z99-set_hostname.sh
+
+# Execute before logging out of template OS to reset value to random on clone.
+#truncate -s 0 /etc/machine-id
+
 #
-# truncate -s 0 /etc/machine-id
-#
-# Once the command is run, do your final shutdown.
-#
-# Test if users has permissions 
+# Test if user is root
 if [ "$EUID" -ne 0 ]
   then
   echo ""
