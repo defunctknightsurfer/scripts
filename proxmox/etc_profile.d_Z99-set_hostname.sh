@@ -18,9 +18,6 @@ if [ "$EUID" -ne 0 ]
   continue
 fi
 
-/usr/bin/apt update
-/usr/bin/apt -y upgrade
-
 MYDOMAIN=`dnsdomainname`
 
 # Default hostname from host template
@@ -43,6 +40,9 @@ fi
 
 echo ""
 echo "Server will reboot after this process completes"
+
+/usr/bin/apt update
+/usr/bin/apt -y upgrade
 
 while true
 	do
