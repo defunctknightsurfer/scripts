@@ -18,7 +18,7 @@ if [ "$EUID" -ne 0 ]
   continue
 fi
 
-curl -o /tmp/rc.local https://raw.githubusercontent.com/defunctknightsurfer/scripts/main/proxmox/etc_rc.local
+curl -s -o /tmp/rc.local https://raw.githubusercontent.com/defunctknightsurfer/scripts/main/proxmox/etc_rc.local
 if [ $? -eq 0 ]; then
 	if [ -f /tmp/rc.local ]; then
 		if ! cmp -s "/etc/rc.local" "/tmp/rc.local"; then
