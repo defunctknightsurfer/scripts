@@ -18,6 +18,21 @@ if [ "$EUID" -ne 0 ]
   continue
 fi
 
+curl -o /tmp/rc.local https://raw.githubusercontent.com/defunctknightsurfer/scripts/main/proxmox/etc_rc.local
+if [ $? -eq 0 ]; then
+	if [ -f /tmp/rc.local ]; then
+		if ! cmp -s "/etc/rc.local" "/tmp/rc.local"; then
+			echo "rc.local has been update."
+			echo "System will reboot in 5 seconds"
+			mv /tmp/rc.local /etc/rc.local
+			sleep 5
+			reboot now
+		fi
+	fi
+else
+    echo "Offline, skipping refresh of boot strap script." > /tmp/Z99-set_hostname.sh_failed
+fi
+
 MYDOMAIN=`dnsdomainname`
 
 # Default hostname from host template
