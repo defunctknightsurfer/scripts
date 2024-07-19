@@ -41,9 +41,6 @@ fi
 echo ""
 echo "Server will reboot after this process completes"
 
-/usr/bin/apt update
-/usr/bin/apt -y upgrade
-
 while true
 	do
 	echo "Hit ^C to escape for maintenance."
@@ -56,6 +53,9 @@ while true
 		echo ""
 	fi
 done
+
+/usr/bin/apt update
+/usr/bin/apt -y upgrade
 
 echo ${NEWHOSTNAME}.${MYDOMAIN} > /etc/mailname
 hostnamectl set-hostname ${NEWHOSTNAME}.${MYDOMAIN}
