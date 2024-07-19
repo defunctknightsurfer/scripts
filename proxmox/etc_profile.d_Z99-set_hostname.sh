@@ -27,6 +27,8 @@ if [ $? -eq 0 ]; then
 			mv /tmp/rc.local /etc/rc.local
 			sleep 5
 			reboot now
+		else
+			rm /tmp/rc.local
 		fi
 	fi
 else
