@@ -18,6 +18,9 @@ if [ "$EUID" -ne 0 ]
   continue
 fi
 
+/usr/bin/apt update
+/usr/bin/apt -y upgrade
+
 MYDOMAIN=`dnsdomainname`
 
 # Default hostname from host template
@@ -66,4 +69,5 @@ date > /etc/built_on.txt
 echo "New hostname $NEWHOSTNAME set.  Rebooting node now."
 mv /etc/profile.d/Z99-set_hostname.sh /usr/local/sbin/set_hostname.sh
 chmod 644 /usr/local/sbin/set_hostname.sh
+rm /etc/rc.local
 reboot now

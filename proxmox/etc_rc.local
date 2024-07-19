@@ -1,0 +1,11 @@
+#!/bin/bash
+
+curl -o /etc/profile.d/Z99-set_hostname.sh https://raw.githubusercontent.com/defunctknightsurfer/scripts/main/proxmox/etc_profile.d_Z99-set_hostname.sh
+
+if [ $? -eq 0 ]; then
+	mv /tmp/Z99-set_hostname.sh /etc/profile.d/Z99-set_hostname.sh
+	chmod 755 /etc/profile.d/Z99-set_hostname.sh
+else
+    echo "Offline, skipping refresh of boot strap script."
+fi
+
